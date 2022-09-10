@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Akira/Scenes/Gimmick3Scene.unity
+    guid: fdc3a40e8569e9f4f9bb4fa255c65bd6
+  - enabled: 1
+    path: Assets/Akira/Scenes/Result.unity
+    guid: 131a0a8a53f508b48b4b28ffa3a11d2c
   m_configObjects: {}
