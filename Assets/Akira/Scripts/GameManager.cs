@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,11 +10,12 @@ public class GameManager : MonoBehaviour
     [Tooltip("オブジェクトの回転2"), SerializeField] public Transform _rotateTwo;
     [Tooltip("オブジェクトの回転3"), SerializeField] public Transform _rotateThree;
     [Tooltip("オブジェクトの回転4"), SerializeField] public Transform _rotateFour;
+    [SerializeField] Image _clear;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _clear.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Clear()
     {
-        SceneManager.LoadScene("Result");
+        _clear.gameObject.SetActive(true);
+        //SceneManager.LoadScene("Result");
     }
 }
