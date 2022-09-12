@@ -4,32 +4,22 @@ using UnityEngine;
 
 public class RotateGimmick : MonoBehaviour
 {
-    int _clickCount = 0;
+    bool isRotate = true;
     [SerializeField] public GameObject _rotateCube_One;
     [SerializeField] public GameObject _rotateCube_Two;
     [SerializeField] public GameObject _rotateCube_Three;
     [SerializeField] public GameObject _rotateCube_Four;
-    Transform _oneTra;
-    Transform _twoTra;
-    Transform _threeTra;
-    Transform _fourTra;
-
-    void Start()
-    {
-        _oneTra = _rotateCube_One.transform;
-        _twoTra = _rotateCube_Two.transform;
-        _threeTra = _rotateCube_Three.transform;
-        _fourTra = _rotateCube_Four.transform;
-    }
 
     /// <summary>
     /// オブジェクト回転ギミック1
     /// </summary>
     public void FirstButtonClick()
     {
-        _oneTra.Rotate(0, 0, 90, Space.World);
-        _twoTra.Rotate(0, 0, 90, Space.World);
-        _threeTra.Rotate(0, 0, 90, Space.World);
+        if (isRotate == true)
+        {
+            isRotate = false;
+            StartCoroutine(RotateFirst());
+        }
     }
 
     /// <summary>
@@ -37,9 +27,11 @@ public class RotateGimmick : MonoBehaviour
     /// </summary>
     public void SecondButtonClick()
     {
-        _twoTra.Rotate(0, 0, 90, Space.World);
-        _threeTra.Rotate(0, 0, 90, Space.World);
-        _fourTra.Rotate(0, 0, 90, Space.World);
+        if (isRotate == true)
+        {
+            isRotate = false;
+            StartCoroutine(RotateSecond());
+        }
     }
 
     /// <summary>
@@ -47,9 +39,11 @@ public class RotateGimmick : MonoBehaviour
     /// </summary>
     public void ThirdButtonClick()
     {
-        _threeTra.Rotate(0, 0, 90, Space.World);
-        _fourTra.Rotate(0, 0, 90, Space.World);
-        _oneTra.Rotate(0, 0, 90, Space.World);
+        if (isRotate == true)
+        {
+            isRotate = false;
+            StartCoroutine(RotateThird());
+        }
     }
 
     /// <summary>
@@ -57,9 +51,11 @@ public class RotateGimmick : MonoBehaviour
     /// </summary>
     public void ForthButtonClick()
     {
-        _fourTra.Rotate(0, 0, 90, Space.World);
-        _oneTra.Rotate(0, 0, 90, Space.World);
-        _twoTra.Rotate(0, 0, 90, Space.World);
+        if (isRotate == true)
+        {
+            isRotate = false;
+            StartCoroutine(RotateForth());
+        }
     }
 
     /// <summary>
@@ -67,9 +63,65 @@ public class RotateGimmick : MonoBehaviour
     /// </summary>
     public void ResetButtonClick()
     {
-        _oneTra.transform.rotation = Quaternion.Euler(0, 0, 45);
-        _twoTra.transform.rotation = Quaternion.Euler(0, 0, 45);
-        _threeTra.transform.rotation = Quaternion.Euler(0, 0, 45);
-        _fourTra.transform.rotation = Quaternion.Euler(0, 0, 45);
+        _rotateCube_One.transform.rotation = Quaternion.Euler(0, 0, 45);
+        _rotateCube_Two.transform.rotation = Quaternion.Euler(0, 0, 45);
+        _rotateCube_Three.transform.rotation = Quaternion.Euler(0, 0, 45);
+        _rotateCube_Four.transform.rotation = Quaternion.Euler(0, 0, 45);
+    }
+
+    IEnumerator RotateFirst()
+    {
+        int i = 0;
+        while (i < 90)
+        {
+            i++;
+            _rotateCube_One.transform.Rotate(0, 0, 1);
+            _rotateCube_Two.transform.Rotate(0, 0, 1);
+            _rotateCube_Three.transform.Rotate(0, 0, 1);
+            yield return null;
+        }
+        isRotate = true;
+    }
+
+    IEnumerator RotateSecond()
+    {
+        int i = 0;
+        while (i < 90)
+        {
+            i++;
+            _rotateCube_Two.transform.Rotate(0, 0, 1);
+            _rotateCube_Three.transform.Rotate(0, 0, 1);
+            _rotateCube_Four.transform.Rotate(0, 0, 1);
+            yield return null;
+        }
+        isRotate = true;
+    }
+
+    IEnumerator RotateThird()
+    {
+        int i = 0;
+        while (i < 90)
+        {
+            i++;
+            _rotateCube_Three.transform.Rotate(0, 0, 1);
+            _rotateCube_Four.transform.Rotate(0, 0, 1);
+            _rotateCube_One.transform.Rotate(0, 0, 1);
+            yield return null;
+        }
+        isRotate = true;
+    }
+
+    IEnumerator RotateForth()
+    {
+        int i = 0;
+        while (i < 90)
+        {
+            i++;
+            _rotateCube_Four.transform.Rotate(0, 0, 1);
+            _rotateCube_One.transform.Rotate(0, 0, 1);
+            _rotateCube_Two.transform.Rotate(0, 0, 1);
+            yield return null;
+        }
+        isRotate = true;
     }
 }

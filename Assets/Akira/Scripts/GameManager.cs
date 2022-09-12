@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
         {
             if (_rotateTwo.transform.rotation == Quaternion.Euler(0, 0, -135))
             {
-                if (_rotateThree.transform.rotation == Quaternion.Euler(0, 0, -135))
+                if (_rotateThree.transform.rotation == Quaternion.Euler(0, 0, -45))
                 {
-                    if (_rotateFour.transform.rotation == Quaternion.Euler(0, 0, -135))
+                    if (_rotateFour.transform.rotation == Quaternion.Euler(0, 0, 135))
                     {
                         Clear();
                     }
