@@ -14,9 +14,11 @@ public class RotateGimmick : MonoBehaviour
     [SerializeField] private UnityEvent _rotateEvent = default;
 
     private static bool _isRotate = false;
+    private static bool _isFinRot = false;
     private static readonly float[] _startRot = new float[4];
 
     public static bool IsRotate => _isRotate;
+    public static bool IsFinRot { get => _isFinRot; set => _isFinRot = value; }
     public static float[] StartRot => _startRot;
 
     private void Start()
@@ -96,5 +98,6 @@ public class RotateGimmick : MonoBehaviour
             yield return null;
         }
         _isRotate = false;
+        _isFinRot = true;
     }
 }

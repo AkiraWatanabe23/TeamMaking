@@ -157,7 +157,7 @@ Transform:
   - {fileID: 1684149095}
   - {fileID: 1528427859}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3703264
 MonoBehaviour:
@@ -250,7 +250,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: a9b65ec68b3ac074c95b06fe67ccc708, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -275,7 +275,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &238898051
 GameObject:
@@ -822,7 +822,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1152446953}
   - component: {fileID: 1152446954}
-  - component: {fileID: 1152446955}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -862,19 +861,6 @@ MonoBehaviour:
   - {fileID: 1441671464}
   - {fileID: 1684149095}
   - {fileID: 1528427859}
-  _clear: {fileID: 1723184955}
---- !u!114 &1152446955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152446952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a543b5913973ddb449d4ff09c7bc7c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _startImage: {fileID: 1922241549}
   _switchSprite: {fileID: 21300000, guid: f64d5840c2bd51241ba0fd2ebcc7321d, type: 3}
 --- !u!1 &1306236524
@@ -1975,7 +1961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1836819392
 GameObject:
@@ -2218,7 +2204,7 @@ RectTransform:
   - {fileID: 238898052}
   - {fileID: 1723184954}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2236,7 +2222,7 @@ GameObject:
   - component: {fileID: 1922241551}
   - component: {fileID: 1922241550}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: CenterCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,7 +2293,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047336552
 GameObject:
