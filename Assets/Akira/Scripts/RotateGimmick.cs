@@ -1,22 +1,37 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// 石像の回転ギミック
 /// </summary>
 public class RotateGimmick : MonoBehaviour
 {
+    [SerializeField] private KeyCode _rotateKey = KeyCode.Tab;
     [SerializeField] private GameObject[] _cubes = new GameObject[4];
-    [SerializeField] private ThirdSceneManager _manager = default;
+    [Range(0f, 5f)]
+    [SerializeField] private float _rotateSpeed = 1f;
+    [SerializeField] private UnityEvent _rotateEvent = default;
 
-    private bool _isRotate = true;
-    private readonly int[] _startRot = new int[4];
+    private static bool _isRotate = false;
+    private static readonly float[] _startRot = new float[4];
+
+    public static bool IsRotate => _isRotate;
+    public static float[] StartRot => _startRot;
 
     private void Start()
     {
         for (var i = 0; i < _startRot.Length; i++)
         {
-            _startRot[i] = (int)_cubes[i].transform.localEulerAngles.z;
+            _startRot[i] = _cubes[i].transform.localEulerAngles.z;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(_rotateKey))
+        {
+            _rotateEvent?.Invoke();
         }
     }
 
@@ -31,9 +46,9 @@ public class RotateGimmick : MonoBehaviour
             case 2:
             case 3:
             case 4:
-                if (_isRotate)
+                if (!_isRotate)
                 {
-                    _isRotate = false;
+                    _isRotate = true;
                     StartCoroutine(Rotate(num));
                 }
                 break;
@@ -70,16 +85,16 @@ public class RotateGimmick : MonoBehaviour
                 break;
         }
 
-        while (i < 90f / _manager.RotateSpeed)
+        while (i < 90f / _rotateSpeed)
         {
             i++;
             for (int n = 0; n < _cubes.Length; n++)
             {
                 if (n != exclude)
-                    _cubes[n].transform.Rotate(0f, 0f, _manager.RotateSpeed);
+                    _cubes[n].transform.Rotate(0f, 0f, _rotateSpeed);
             }
             yield return null;
         }
-        _isRotate = true;
+        _isRotate = false;
     }
 }
