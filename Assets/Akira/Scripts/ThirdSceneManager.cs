@@ -8,7 +8,6 @@ public class ThirdSceneManager : MonoBehaviour
     [SerializeField] private Image _clear = default;
 
     private int _clearCount = 0;
-    private float[] _startRot = new float[4];
 
     public float RotateSpeed => _rotateSpeed;
 
@@ -16,11 +15,6 @@ public class ThirdSceneManager : MonoBehaviour
     {
         _clear.gameObject.SetActive(false);
         _clearCount = 0;
-
-        for (var i = 0; i < _startRot.Length; i++)
-        {
-            _startRot[i] = _rotates[i].rotation.z;
-        }
     }
 
     private void Update()

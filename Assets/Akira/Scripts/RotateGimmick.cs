@@ -10,6 +10,15 @@ public class RotateGimmick : MonoBehaviour
     [SerializeField] private ThirdSceneManager _manager = default;
 
     private bool _isRotate = true;
+    private readonly int[] _startRot = new int[4];
+
+    private void Start()
+    {
+        for (var i = 0; i < _startRot.Length; i++)
+        {
+            _startRot[i] = (int)_cubes[i].transform.localEulerAngles.z;
+        }
+    }
 
     public void ButtonClick(int num)
     {
@@ -33,9 +42,11 @@ public class RotateGimmick : MonoBehaviour
 
     private void RotateReset()
     {
-        foreach (var rot in _cubes)
+        for (var i = 0; i < _cubes.Length; i++)
         {
-            rot.transform.rotation = Quaternion.Euler(0, 0, 45);
+            var n = _cubes[i].transform.localEulerAngles;
+            n.z = _startRot[i];
+            _cubes[i].transform.localEulerAngles = n;
         }
     }
 
