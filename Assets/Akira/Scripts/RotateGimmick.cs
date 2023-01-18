@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Î‘œ‚Ì‰ñ“]ƒMƒ~ƒbƒN
+/// çŸ³åƒã®å›è»¢ã‚®ãƒŸãƒƒã‚¯
 /// </summary>
 public class RotateGimmick : MonoBehaviour
 {

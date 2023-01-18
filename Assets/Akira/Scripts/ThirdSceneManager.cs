@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class ThirdSceneManager : MonoBehaviour
@@ -8,6 +8,7 @@ public class ThirdSceneManager : MonoBehaviour
     [SerializeField] private Image _clear = default;
 
     private int _clearCount = 0;
+    private float[] _startRot = new float[4];
 
     public float RotateSpeed => _rotateSpeed;
 
@@ -15,6 +16,11 @@ public class ThirdSceneManager : MonoBehaviour
     {
         _clear.gameObject.SetActive(false);
         _clearCount = 0;
+
+        for (var i = 0; i < _startRot.Length; i++)
+        {
+            _startRot[i] = _rotates[i].rotation.z;
+        }
     }
 
     private void Update()
@@ -29,23 +35,23 @@ public class ThirdSceneManager : MonoBehaviour
 
     private void Check()
     {
-        //‘S‚Ä‚ÌƒIƒuƒWƒFƒNƒg‚ª“à‘¤‚ðŒü‚¢‚½‚çƒNƒŠƒA...Clear()‚ðŽÀs
-        for (int i = 0; i < 4; i++)
-        {
-            if (_rotates[i].transform.rotation == Quaternion.Euler(0, 0, -135))
-            {
-                _clearCount++;
-                Debug.Log(_clearCount);
-            }
-            else
-            {
-                Debug.Log(_clearCount);
-            }
-        }
+        //å…¨ã¦ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå†…å´ã‚’å‘ã„ãŸã‚‰ã‚¯ãƒªã‚¢...Clear()ã‚’å®Ÿè¡Œ
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    if (_rotates[i].transform.rotation == Quaternion.Euler(0, 0, -135))
+        //    {
+        //        _clearCount++;
+        //        Debug.Log(_clearCount);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log(_clearCount);
+        //    }
+        //}
 
-        if (_clearCount >= 4)
-            Clear();
-        else
-            _clearCount = 0;
+        //if (_clearCount >= 4)
+        //    Clear();
+        //else
+        //    _clearCount = 0;
     }
 }
