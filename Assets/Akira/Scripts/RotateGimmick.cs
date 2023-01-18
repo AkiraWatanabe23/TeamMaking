@@ -1,127 +1,74 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 石像の回転ギミック
+/// </summary>
 public class RotateGimmick : MonoBehaviour
 {
-    bool isRotate = true;
-    [SerializeField] public GameObject _rotateCube_One;
-    [SerializeField] public GameObject _rotateCube_Two;
-    [SerializeField] public GameObject _rotateCube_Three;
-    [SerializeField] public GameObject _rotateCube_Four;
+    [SerializeField] private GameObject[] _cubes = new GameObject[4];
+    [SerializeField] private ThirdSceneManager _manager = default;
 
-    /// <summary>
-    /// オブジェクト回転ギミック1
-    /// </summary>
-    public void FirstButtonClick()
+    private bool _isRotate = true;
+
+    public void ButtonClick(int num)
     {
-        if (isRotate == true)
+        switch (num)
         {
-            isRotate = false;
-            StartCoroutine(RotateFirst());
+            case 0:
+                RotateReset();
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                if (_isRotate)
+                {
+                    _isRotate = false;
+                    StartCoroutine(Rotate(num));
+                }
+                break;
         }
     }
 
-    /// <summary>
-    /// オブジェクト回転ギミック2
-    /// </summary>
-    public void SecondButtonClick()
+    private void RotateReset()
     {
-        if (isRotate == true)
+        foreach (var rot in _cubes)
         {
-            isRotate = false;
-            StartCoroutine(RotateSecond());
+            rot.transform.rotation = Quaternion.Euler(0, 0, 45);
         }
     }
 
-    /// <summary>
-    /// オブジェクト回転ギミック3
-    /// </summary>
-    public void ThirdButtonClick()
-    {
-        if (isRotate == true)
-        {
-            isRotate = false;
-            StartCoroutine(RotateThird());
-        }
-    }
-
-    /// <summary>
-    /// オブジェクト回転ギミック4
-    /// </summary>
-    public void ForthButtonClick()
-    {
-        if (isRotate == true)
-        {
-            isRotate = false;
-            StartCoroutine(RotateForth());
-        }
-    }
-
-    /// <summary>
-    /// Cubeを初期位置に戻す
-    /// </summary>
-    public void ResetButtonClick()
-    {
-        _rotateCube_One.transform.rotation = Quaternion.Euler(0, 0, 45);
-        _rotateCube_Two.transform.rotation = Quaternion.Euler(0, 0, 45);
-        _rotateCube_Three.transform.rotation = Quaternion.Euler(0, 0, 45);
-        _rotateCube_Four.transform.rotation = Quaternion.Euler(0, 0, 45);
-    }
-
-    IEnumerator RotateFirst()
+    private IEnumerator Rotate(int num)
     {
         int i = 0;
-        while (i < 90)
+        int exclude = 0;
+        switch (num)
         {
-            i++;
-            _rotateCube_One.transform.Rotate(0, 0, 1);
-            _rotateCube_Two.transform.Rotate(0, 0, 1);
-            _rotateCube_Three.transform.Rotate(0, 0, 1);
-            yield return null;
+            case 1:
+                exclude = 3;
+                break;
+            case 2:
+                exclude = 0;
+                break;
+            case 3:
+                exclude = 1;
+                break;
+            case 4:
+                exclude = 2;
+                break;
         }
-        isRotate = true;
-    }
 
-    IEnumerator RotateSecond()
-    {
-        int i = 0;
-        while (i < 90)
+        while (i < 90f / _manager.RotateSpeed)
         {
             i++;
-            _rotateCube_Two.transform.Rotate(0, 0, 1);
-            _rotateCube_Three.transform.Rotate(0, 0, 1);
-            _rotateCube_Four.transform.Rotate(0, 0, 1);
+            for (int n = 0; n < _cubes.Length; n++)
+            {
+                if (n != exclude)
+                    _cubes[n].transform.Rotate(0f, 0f, _manager.RotateSpeed);
+            }
             yield return null;
         }
-        isRotate = true;
-    }
-
-    IEnumerator RotateThird()
-    {
-        int i = 0;
-        while (i < 90)
-        {
-            i++;
-            _rotateCube_Three.transform.Rotate(0, 0, 1);
-            _rotateCube_Four.transform.Rotate(0, 0, 1);
-            _rotateCube_One.transform.Rotate(0, 0, 1);
-            yield return null;
-        }
-        isRotate = true;
-    }
-
-    IEnumerator RotateForth()
-    {
-        int i = 0;
-        while (i < 90)
-        {
-            i++;
-            _rotateCube_Four.transform.Rotate(0, 0, 1);
-            _rotateCube_One.transform.Rotate(0, 0, 1);
-            _rotateCube_Two.transform.Rotate(0, 0, 1);
-            yield return null;
-        }
-        isRotate = true;
+        _isRotate = true;
     }
 }

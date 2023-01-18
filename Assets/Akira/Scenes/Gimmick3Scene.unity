@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3703263}
+  - component: {fileID: 3703264}
   m_Layer: 0
   m_Name: GimmickObjects
   m_TagString: Untagged
@@ -156,8 +157,26 @@ Transform:
   - {fileID: 1684149095}
   - {fileID: 1528427859}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3703264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3703262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7441a8a45acdf74dab64836b69b9326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cubes:
+  - {fileID: 397506227}
+  - {fileID: 1441671465}
+  - {fileID: 1684149096}
+  - {fileID: 1528427860}
+  _manager: {fileID: 1152446954}
 --- !u!1 &5679133
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +504,6 @@ GameObject:
   - component: {fileID: 471577014}
   - component: {fileID: 471577013}
   - component: {fileID: 471577012}
-  - component: {fileID: 471577015}
   m_Layer: 5
   m_Name: 3Button(3,4,1)
   m_TagString: Untagged
@@ -558,14 +576,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 471577015}
+      - m_Target: {fileID: 3703264}
         m_TargetAssemblyTypeName: RotateGimmick, Assembly-CSharp
-        m_MethodName: ThirdButtonClick
-        m_Mode: 1
+        m_MethodName: ButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -608,22 +626,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471577010}
   m_CullTransparentMesh: 1
---- !u!114 &471577015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471577010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7441a8a45acdf74dab64836b69b9326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotateCube_One: {fileID: 397506227}
-  _rotateCube_Two: {fileID: 1441671465}
-  _rotateCube_Three: {fileID: 1684149096}
-  _rotateCube_Four: {fileID: 1528427860}
 --- !u!1 &985412682
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +957,7 @@ GameObject:
   - component: {fileID: 1152446953}
   - component: {fileID: 1152446954}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,7 +976,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1152446954
 MonoBehaviour:
@@ -988,10 +990,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52836e026cdc58a43a85da187eb43583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateOne: {fileID: 397506226}
-  _rotateTwo: {fileID: 1441671464}
-  _rotateThree: {fileID: 1684149095}
-  _rotateFour: {fileID: 1528427859}
+  _rotateSpeed: 1
+  _rotates:
+  - {fileID: 397506226}
+  - {fileID: 1441671464}
+  - {fileID: 1684149095}
+  - {fileID: 1528427859}
   _clear: {fileID: 1723184955}
 --- !u!1 &1306236524
 GameObject:
@@ -1455,7 +1459,6 @@ GameObject:
   - component: {fileID: 1509693192}
   - component: {fileID: 1509693191}
   - component: {fileID: 1509693190}
-  - component: {fileID: 1509693193}
   m_Layer: 5
   m_Name: 4Button(4,1,2)
   m_TagString: Untagged
@@ -1528,14 +1531,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1509693193}
+      - m_Target: {fileID: 3703264}
         m_TargetAssemblyTypeName: RotateGimmick, Assembly-CSharp
-        m_MethodName: ForthButtonClick
-        m_Mode: 1
+        m_MethodName: ButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1578,22 +1581,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509693188}
   m_CullTransparentMesh: 1
---- !u!114 &1509693193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509693188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7441a8a45acdf74dab64836b69b9326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotateCube_One: {fileID: 397506227}
-  _rotateCube_Two: {fileID: 1441671465}
-  _rotateCube_Three: {fileID: 1684149096}
-  _rotateCube_Four: {fileID: 1528427860}
 --- !u!1001 &1528427858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1836,7 +1823,6 @@ GameObject:
   - component: {fileID: 1722277566}
   - component: {fileID: 1722277565}
   - component: {fileID: 1722277564}
-  - component: {fileID: 1722277567}
   m_Layer: 5
   m_Name: ResetButton
   m_TagString: Untagged
@@ -1909,10 +1895,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1722277567}
+      - m_Target: {fileID: 3703264}
         m_TargetAssemblyTypeName: RotateGimmick, Assembly-CSharp
-        m_MethodName: ResetButtonClick
-        m_Mode: 1
+        m_MethodName: ButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1959,22 +1945,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722277562}
   m_CullTransparentMesh: 1
---- !u!114 &1722277567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722277562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7441a8a45acdf74dab64836b69b9326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotateCube_One: {fileID: 397506227}
-  _rotateCube_Two: {fileID: 1441671465}
-  _rotateCube_Three: {fileID: 1684149096}
-  _rotateCube_Four: {fileID: 1528427860}
 --- !u!1 &1723184953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2087,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1836819392
 GameObject:
@@ -2131,7 +2101,6 @@ GameObject:
   - component: {fileID: 1836819396}
   - component: {fileID: 1836819395}
   - component: {fileID: 1836819394}
-  - component: {fileID: 1836819397}
   m_Layer: 5
   m_Name: 2Button(2,3,4)
   m_TagString: Untagged
@@ -2204,14 +2173,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1836819397}
+      - m_Target: {fileID: 3703264}
         m_TargetAssemblyTypeName: RotateGimmick, Assembly-CSharp
-        m_MethodName: SecondButtonClick
-        m_Mode: 1
+        m_MethodName: ButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2254,22 +2223,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836819392}
   m_CullTransparentMesh: 1
---- !u!114 &1836819397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836819392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7441a8a45acdf74dab64836b69b9326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotateCube_One: {fileID: 397506227}
-  _rotateCube_Two: {fileID: 1441671465}
-  _rotateCube_Three: {fileID: 1684149096}
-  _rotateCube_Four: {fileID: 1528427860}
 --- !u!1 &1878447857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,7 +2327,7 @@ RectTransform:
   - {fileID: 231140330}
   - {fileID: 1723184954}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2463,7 +2416,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047336552
 GameObject:
@@ -2477,7 +2430,6 @@ GameObject:
   - component: {fileID: 2047336556}
   - component: {fileID: 2047336555}
   - component: {fileID: 2047336554}
-  - component: {fileID: 2047336557}
   m_Layer: 5
   m_Name: 1Button(1,2,3)
   m_TagString: Untagged
@@ -2550,14 +2502,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2047336557}
+      - m_Target: {fileID: 3703264}
         m_TargetAssemblyTypeName: RotateGimmick, Assembly-CSharp
-        m_MethodName: FirstButtonClick
-        m_Mode: 1
+        m_MethodName: ButtonClick
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2600,19 +2552,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047336552}
   m_CullTransparentMesh: 1
---- !u!114 &2047336557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047336552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7441a8a45acdf74dab64836b69b9326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotateCube_One: {fileID: 397506227}
-  _rotateCube_Two: {fileID: 1441671465}
-  _rotateCube_Three: {fileID: 1684149096}
-  _rotateCube_Four: {fileID: 1528427860}
