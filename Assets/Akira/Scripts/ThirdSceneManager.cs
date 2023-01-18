@@ -8,11 +8,6 @@ public class ThirdSceneManager : MonoBehaviour
 
     private int _clearCount = 0;
 
-    private void Start()
-    {
-        _clearCount = 0;
-    }
-
     private void Update()
     {
         if (RotateGimmick.IsFinRot)
@@ -25,8 +20,10 @@ public class ThirdSceneManager : MonoBehaviour
 
     private void Check()
     {
+        //TODO：この部分の判定を確認する(現在のz軸のrotationの値が最初から180°回転したか)
         for (int i = 0; i < _rotates.Length; i++)
         {
+            Debug.Log(RotateGimmick.StartRot[i]);
             if (_rotates[i].localEulerAngles.z + 180 == RotateGimmick.StartRot[i] ||
                 _rotates[i].localEulerAngles.z - 180 == RotateGimmick.StartRot[i])
             {
