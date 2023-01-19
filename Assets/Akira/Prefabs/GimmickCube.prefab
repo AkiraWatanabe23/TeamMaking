@@ -103,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
+    oldSize: {x: 3.5714285, y: 3.5714285}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -124,12 +124,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8375258445041720408, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.642857
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375258445041720408, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.414286
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375258445041720408, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375258445041720408, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8375258445041720408, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 8375258445041720408, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
       propertyPath: m_LocalPosition.z
@@ -170,6 +182,14 @@ PrefabInstance:
     - target: {fileID: 8375258445041720410, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
       propertyPath: m_Name
       value: RotateDirection
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375258445041720411, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8375258445041720411, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8375258445041720411, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
       propertyPath: m_SortingOrder

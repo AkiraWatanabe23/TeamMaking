@@ -87,6 +87,11 @@ public class RotateGimmick : MonoBehaviour
                 break;
         }
 
+        foreach (var n in _cubes)
+        {
+            n.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
         while (i < 90f / _rotateSpeed)
         {
             i++;
@@ -99,5 +104,9 @@ public class RotateGimmick : MonoBehaviour
         }
         _isRotate = false;
         _isFinRot = true;
+        foreach (var n in _cubes)
+        {
+            n.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 }
