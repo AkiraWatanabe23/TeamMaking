@@ -177,7 +177,7 @@ MonoBehaviour:
   - {fileID: 1441671465}
   - {fileID: 1684149096}
   - {fileID: 1528427860}
-  _rotateSpeed: 1.5
+  _rotateSpeed: 1
   _rotateEvent:
     m_PersistentCalls:
       m_Calls:
@@ -856,11 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52836e026cdc58a43a85da187eb43583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotates:
-  - {fileID: 397506226}
-  - {fileID: 1441671464}
-  - {fileID: 1684149095}
-  - {fileID: 1528427859}
   _startImage: {fileID: 1922241549}
   _switchSprite: {fileID: 21300000, guid: 148265490d229004d9885e0530393d5d, type: 3}
 --- !u!1 &1306236524

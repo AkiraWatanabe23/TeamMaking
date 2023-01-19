@@ -13,13 +13,15 @@ public class RotateGimmick : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 1f;
     [SerializeField] private UnityEvent _rotateEvent = default;
 
-    private static bool _isRotate = false;
-    private static bool _isFinRot = false;
-    private static readonly float[] _startRot = new float[4];
+    private bool _isRotate = false;
+    private bool _isFinRot = false;
+    private int _clearCount = 0;
+    private readonly float[] _startRot = new float[4];
 
-    public static bool IsRotate => _isRotate;
-    public static bool IsFinRot { get => _isFinRot; set => _isFinRot = value; }
-    public static float[] StartRot => _startRot;
+    public GameObject[] Cubes => _cubes;
+    public bool IsRotate => _isRotate;
+    public bool IsFinRot { get => _isFinRot; set => _isFinRot = value; }
+    public float[] StartRot => _startRot;
 
     private void Start()
     {
@@ -34,6 +36,50 @@ public class RotateGimmick : MonoBehaviour
         if (Input.GetKeyDown(_rotateKey))
         {
             _rotateEvent?.Invoke();
+        }
+
+        if (_isFinRot)
+        {
+            Debug.Log("check中...");
+            Check();
+            _isFinRot = false;
+        }
+    }
+
+    private void Check()
+    {
+        for (int i = 0; i < _cubes.Length; i++)
+        {
+            //2つの浮動小数点数が「ほとんど」等しかったら
+            if (Mathf.Approximately(_cubes[i].transform.localEulerAngles.z + 180, _startRot[i]) ||
+                Mathf.Approximately(_cubes[i].transform.localEulerAngles.z - 180, _startRot[i]))
+            {
+                _clearCount++;
+                _cubes[i].transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else
+            {
+                _cubes[i].transform.GetChild(0).gameObject.SetActive(true);
+            }
+
+            //比較したい2数の差の絶対値がごく小さかったら
+            //if (Mathf.Abs(_cubes[i].localEulerAngles.z + 180 - _startRot[i]) < 0.1f ||
+            //    Mathf.Abs(_cubes[i].localEulerAngles.z - 180 - _startRot[i]) < 0.1f)
+            //{
+            //    Debug.Log(_rotates[i].gameObject.name);
+            //    _clearCount++;
+            //}
+        }
+
+        if (_clearCount == 4)
+        {
+            Debug.Log("soroimasita!!");
+            ThirdSceneManager.IsClear = true;
+        }
+        else
+        {
+            Debug.Log($"{_clearCount}, sorottenaiyo...");
+            _clearCount = 0;
         }
     }
 
@@ -90,6 +136,7 @@ public class RotateGimmick : MonoBehaviour
         foreach (var n in _cubes)
         {
             n.transform.GetChild(0).gameObject.SetActive(false);
+            n.transform.GetChild(1).gameObject.SetActive(false);
         }
 
         while (i < 90f / _rotateSpeed)
@@ -104,9 +151,5 @@ public class RotateGimmick : MonoBehaviour
         }
         _isRotate = false;
         _isFinRot = true;
-        foreach (var n in _cubes)
-        {
-            n.transform.GetChild(0).gameObject.SetActive(true);
-        }
     }
 }
