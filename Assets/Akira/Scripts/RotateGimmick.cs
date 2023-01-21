@@ -13,15 +13,9 @@ public class RotateGimmick : MonoBehaviour
     [SerializeField] private float _rotateSpeed = 1f;
     [SerializeField] private UnityEvent _rotateEvent = default;
 
-    private bool _isRotate = false;
     private bool _isFinRot = false;
     private int _clearCount = 0;
     private readonly float[] _startRot = new float[4];
-
-    public GameObject[] Cubes => _cubes;
-    public bool IsRotate => _isRotate;
-    public bool IsFinRot { get => _isFinRot; set => _isFinRot = value; }
-    public float[] StartRot => _startRot;
 
     private void Start()
     {
@@ -61,14 +55,6 @@ public class RotateGimmick : MonoBehaviour
             {
                 _cubes[i].transform.GetChild(0).gameObject.SetActive(true);
             }
-
-            //比較したい2数の差の絶対値がごく小さかったら
-            //if (Mathf.Abs(_cubes[i].localEulerAngles.z + 180 - _startRot[i]) < 0.1f ||
-            //    Mathf.Abs(_cubes[i].localEulerAngles.z - 180 - _startRot[i]) < 0.1f)
-            //{
-            //    Debug.Log(_rotates[i].gameObject.name);
-            //    _clearCount++;
-            //}
         }
 
         if (_clearCount == 4)
@@ -94,22 +80,26 @@ public class RotateGimmick : MonoBehaviour
             case 2:
             case 3:
             case 4:
-                if (!_isRotate)
-                {
-                    _isRotate = true;
-                    StartCoroutine(Rotate(num));
-                }
+                StartCoroutine(Rotate(num));
                 break;
         }
     }
 
-    private void RotateReset()
+    public void RotateReset()
     {
-        for (var i = 0; i < _cubes.Length; i++)
+        if (!ThirdSceneManager.IsClear)
         {
-            var n = _cubes[i].transform.localEulerAngles;
-            n.z = _startRot[i];
-            _cubes[i].transform.localEulerAngles = n;
+            for (var i = 0; i < _cubes.Length; i++)
+            {
+                var n = _cubes[i].transform.localEulerAngles;
+                n.z = _startRot[i];
+                _cubes[i].transform.localEulerAngles = n;
+            }
+            Debug.Log("reset");
+        }
+        else
+        {
+            Debug.Log("既に揃っています");
         }
     }
 
@@ -149,7 +139,6 @@ public class RotateGimmick : MonoBehaviour
             }
             yield return null;
         }
-        _isRotate = false;
         _isFinRot = true;
     }
 }

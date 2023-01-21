@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8375258445041720411, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d99048d1a484cb4bbe1b346824e6112, type: 3}
 --- !u!4 &8375258445480581886 stripped
