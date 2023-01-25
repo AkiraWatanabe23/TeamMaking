@@ -4,40 +4,66 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rb2D;
     [SerializeField]
     private float _moveSpeed = 5f;
-    Animator _anim;
-    void Start()
+    [SerializeField]
+    private float _jumpForce = 5f;
+
+    private Rigidbody2D _rb2D;
+    private Animator _anim;
+    private CheckGround _checkGround;
+    private float _horizontal;
+
+
+    private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
+        _checkGround = GetComponent<CheckGround>();
     }
-    void Update()
+    private void FixedUpdate()
     {
-        var horizontal = Input.GetAxisRaw("Horizontal");
-        _rb2D.velocity = new Vector2(horizontal * _moveSpeed, _rb2D.velocity.y);
-        if (horizontal > 0)
+        Move();
+    }
+    private void Update()
+    {
+        _horizontal = Input.GetAxisRaw("Horizontal");
+        Jump();
+    }
+
+    private void Move()
+    {
+        _rb2D.velocity = new Vector2(_horizontal * _moveSpeed, _rb2D.velocity.y);
+        if (_horizontal > 0)
         {
-            _anim.Play("PlayerRight");
+            _anim.SetBool("IsRight", true);
         }
-        else if (horizontal < 0)
+        else if (_horizontal < 0)
         {
-            _anim.Play("PlayerLeft");
+            _anim.SetBool("IsLeft", true);
         }
         else
         {
-            _anim.Play("TestPlayer");
+            _anim.SetBool("IsRight", false);
+            _anim.SetBool("IsLeft", false);
         }
-        bool jumpKey = Input.GetButtonDown("Jump");
-        //if (jumpKey)
-        //{
-        //    if (checkGround.GetCheckGround())
-        //    {
-        //        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //ƒWƒƒƒ“ƒv‚ÌŒvŽZ
-        //        _anim.SetBool("isJump", true);
-        //    }
 
-        //}
+    }
+
+    private void Jump()
+    {
+        bool jumpKey = Input.GetButtonDown("Jump");
+        if (jumpKey)
+        {
+            if (_checkGround.GetCheckGround())
+            {
+                _rb2D.velocity = new Vector2(0f, _jumpForce);
+                _anim.SetBool("IsJump", true);
+            }
+        }
+    }
+    public void Isjump()
+    {
+        _anim.SetBool("IsJump", false);
     }
 }
