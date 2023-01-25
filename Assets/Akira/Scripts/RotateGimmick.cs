@@ -8,11 +8,15 @@ using UnityEngine.Events;
 public class RotateGimmick : MonoBehaviour
 {
     [SerializeField] private KeyCode _rotateKey = KeyCode.Tab;
+    [SerializeField] private GameObject _target = default;
     [SerializeField] private GameObject[] _cubes = new GameObject[4];
     [Range(0f, 5f)]
     [SerializeField] private float _rotateSpeed = 1f;
+    [SerializeField] private LayerMask _layer = default;
     [SerializeField] private UnityEvent _rotateEvent = default;
 
+    private GameObject[] _muzzle = new GameObject[4];
+    private GameObject[] _muzzleEnd = new GameObject[4];
     private bool _isFinRot = false;
     private int _clearCount = 0;
     private readonly float[] _startRot = new float[4];
@@ -21,8 +25,16 @@ public class RotateGimmick : MonoBehaviour
     {
         for (var i = 0; i < _startRot.Length; i++)
         {
+            _muzzle[i] = _cubes[i].transform.GetChild(2).gameObject;
+            _muzzleEnd[i] = _cubes[i].transform.GetChild(3).gameObject;
             _startRot[i] = _cubes[i].transform.localEulerAngles.z;
         }
+
+        //for (var i = 0; i < 4; i++)
+        //{
+        //    _cubes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
+        //    _cubes[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.red;
+        //}
     }
 
     private void Update()
@@ -42,11 +54,10 @@ public class RotateGimmick : MonoBehaviour
 
     private void Check()
     {
-        for (int i = 0; i < _cubes.Length; i++)
+        for (int i = 0; i < 4; i++)
         {
-            //2つの浮動小数点数が「ほとんど」等しかったら
-            if (Mathf.Approximately(_cubes[i].transform.localEulerAngles.z + 180, _startRot[i]) ||
-                Mathf.Approximately(_cubes[i].transform.localEulerAngles.z - 180, _startRot[i]))
+            Debug.DrawLine(_muzzle[i].transform.position, _muzzleEnd[i].transform.position, Color.blue, 5);
+            if (Physics2D.Linecast(_muzzle[i].transform.position, _muzzleEnd[i].transform.position, _layer))
             {
                 _clearCount++;
                 _cubes[i].transform.GetChild(1).gameObject.SetActive(true);
@@ -61,6 +72,12 @@ public class RotateGimmick : MonoBehaviour
         {
             Debug.Log("soroimasita!!");
             ThirdSceneManager.IsClear = true;
+
+            //for (var i = 0; i < 4; i++)
+            //{
+            //    _cubes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+            //    _cubes[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.green;
+            //}
         }
         else
         {
