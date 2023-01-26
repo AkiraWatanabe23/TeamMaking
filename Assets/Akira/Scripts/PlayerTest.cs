@@ -1,21 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Data;
+using UnityEngine;
 
 /// <summary>
 /// Player(テストなので、移動のみ)
 /// </summary>
 public class PlayerTest : MonoBehaviour
 {
+    [Range(1f, 10f)]
     [SerializeField] private float _moveSpeed = 1f;
 
     private Rigidbody2D _rb = default;
     private Animator _anim = default;
-    private SpriteRenderer _renderer = default;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-        _renderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -29,7 +29,31 @@ public class PlayerTest : MonoBehaviour
             _anim.SetBool("IsIdle", false);
             _anim.SetBool("IsWalk", true);
 
-            _renderer.flipX = h > 0 ? false : true;
+            if (h > 0)
+            {
+                var n = transform.localEulerAngles;
+                n.z = 0f;
+                transform.localEulerAngles = n;
+            }
+            else
+            {
+                var n = transform.localEulerAngles;
+                n.z = 180f;
+                transform.localEulerAngles = n;
+            }
+
+            if (v > 0)
+            {
+                var n = transform.localEulerAngles;
+                n.z = -90f;
+                transform.localEulerAngles = n;
+            }
+            else
+            {
+                var n = transform.localEulerAngles;
+                n.z = 90f;
+                transform.localEulerAngles = n;
+            }
         }
         else
         {
