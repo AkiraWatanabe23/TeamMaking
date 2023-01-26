@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Switch : MonoBehaviour
@@ -7,6 +7,7 @@ public class Switch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //登録したイベントを実行する
         _onEvent?.Invoke();
     }
 }
