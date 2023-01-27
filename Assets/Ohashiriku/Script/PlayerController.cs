@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Animator _anim;
     private CheckGround _checkGround;
     private float _horizontal;
+    private Transform _firstTransform;
 
 
     private void Start()
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _checkGround = GetComponent<CheckGround>();
+        _firstTransform = transform;
     }
     private void FixedUpdate()
     {
@@ -57,13 +59,35 @@ public class PlayerController : MonoBehaviour
         {
             if (_checkGround.GetCheckGround())
             {
+                if (_horizontal >= 0)
+                {
+                    _anim.SetBool("IsJumpRight", true);
+                }
+                else
+                {
+                    _anim.SetBool("IsJumpLeft", true);
+                }
                 _rb2D.velocity = new Vector2(0f, _jumpForce);
-                _anim.SetBool("IsJump", true);
+                
             }
         }
     }
     public void Isjump()
     {
-        _anim.SetBool("IsJump", false);
+        _anim.SetBool("IsJumpRight", false);
+        _anim.SetBool("IsJumpLeft", false);
+    }
+    private void PlayerReset()
+    {
+        transform.position = _firstTransform.position;
+        _anim.Play("PlayerUp");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "リセット用のタグ")
+        {
+            PlayerReset();
+        }
     }
 }

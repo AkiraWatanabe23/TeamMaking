@@ -10,7 +10,7 @@ public class SwitchController : MonoBehaviour
         //タグ指定は仮、あとでインターフェースで実装する
         if(collision.gameObject.tag == "Player")
         {
-            _onEvent.Invoke();
+            _onEvent?.Invoke();
         }
     }
 }
