@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d5c82906856e4f43905c62786286a5f
+guid: da7bd90787a95a14eb06d9e55b87aecd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,91 +102,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: haikeihiru kumo_0
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 668
-        width: 9
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2eaa4359130a17741b8dc6721ece060d
-      internalID: 276793607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: haikeihiru kumo_2
-      rect:
-        serializedVersion: 2
-        x: 1189
-        y: 869
-        width: 294
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 060bbebe94749bc459aba4f95e8493d9
-      internalID: -1968342683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: haikeihiru kumo_3
-      rect:
-        serializedVersion: 2
-        x: 523
-        y: 677
-        width: 347
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1da82451615449e44a5f317d7c4ccbc9
-      internalID: -1018513688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: haikeihiru kumo_4
-      rect:
-        serializedVersion: 2
-        x: 1383
-        y: 675
-        width: 513
-        height: 143
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75cf21476e609184c97c7c69895354d6
-      internalID: 946183721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -197,14 +113,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      haikeihiru kumo_4: 946183721
-      haikeihiru kumo_2: -1968342683
-      haikeihiru kumo_6: -1816628185
-      haikeihiru kumo_3: -1018513688
-      haikeihiru kumo_1: 734619809
-      haikeihiru kumo_0: 276793607
-      haikeihiru kumo_5: 554747259
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
