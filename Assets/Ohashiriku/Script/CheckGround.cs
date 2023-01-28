@@ -1,23 +1,23 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CheckGround : MonoBehaviour
 {
-    [SerializeField] PlayerController _player;
-    public bool isGround = false;
 
+    private bool _isGround = false;
+    private bool _isJump = false;
+
+    public bool IsJump => _isJump;
     public bool GetCheckGround()
     {
-        return isGround;
+        return _isGround;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            isGround = false;
+            _isGround = false;
+            _isJump = true;
 
         }
     }
@@ -25,8 +25,8 @@ public class CheckGround : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            isGround = true;
-            _player.Isjump();
+            _isGround = true;
+            _isJump = false;
         }
     }
 }

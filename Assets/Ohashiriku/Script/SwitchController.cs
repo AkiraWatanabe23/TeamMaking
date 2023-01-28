@@ -7,7 +7,6 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //タグ指定は仮、あとでインターフェースで実装する
         if(collision.gameObject.tag == "Player")
         {
             _onEvent?.Invoke();

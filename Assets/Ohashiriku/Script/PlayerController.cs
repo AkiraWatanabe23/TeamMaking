@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Tooltip("移動スピード")]
     private float _moveSpeed = 5f;
-    [SerializeField]
+    [SerializeField, Tooltip("ジャンプパワー")]
     private float _jumpForce = 5f;
 
     private Rigidbody2D _rb2D;
@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// ジャンプ
+    /// </summary>
     private void Jump()
     {
         bool jumpKey = Input.GetButtonDown("Jump");
@@ -59,24 +62,22 @@ public class PlayerController : MonoBehaviour
         {
             if (_checkGround.GetCheckGround())
             {
-                if (_horizontal >= 0)
-                {
-                    _anim.SetBool("IsJumpRight", true);
-                }
-                else
-                {
-                    _anim.SetBool("IsJumpLeft", true);
-                }
                 _rb2D.velocity = new Vector2(0f, _jumpForce);
-                
             }
         }
+        if (_horizontal >= 0)
+        {
+            _anim.SetBool("IsJumpRight", _checkGround.IsJump);
+        }
+        else
+        {
+            _anim.SetBool("IsJumpLeft", _checkGround.IsJump);
+        }
     }
-    public void Isjump()
-    {
-        _anim.SetBool("IsJumpRight", false);
-        _anim.SetBool("IsJumpLeft", false);
-    }
+
+    /// <summary>
+    /// スタート地点からやり直し
+    /// </summary>
     private void PlayerReset()
     {
         transform.position = _firstTransform.position;
