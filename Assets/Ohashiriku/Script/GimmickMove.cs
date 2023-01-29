@@ -5,15 +5,55 @@ using DG.Tweening;
 
 public class GimmickMove : MonoBehaviour
 {
-    bool _test = false;
-    public void Move(float x)
+    [SerializeField]
+    private float _seconds = 5;
+
+    private Transform _transform;
+    private bool _isMoveYLoop = false;
+    private bool _isMoveY = false;
+    private bool _isDiagonalMove = false;
+
+    private void Start()
     {
-        if(!_test)
+        _transform = transform;
+    }
+
+    public void MoveYLoop(float y)
+    {
+        if(!_isMoveYLoop)
         {
-            _test = true;
-            transform.DOMove(new Vector2(x, 0), 3)
+            _isMoveYLoop = true;
+            _transform.DOMoveY(y, _seconds)
             .SetLoops(2, LoopType.Yoyo)
-            .OnComplete(() => _test = false);
+            .OnKill(() => _isMoveYLoop = false);
         }
     }
+    public void MoveY(float y)
+    {
+        if (!_isMoveY)
+        {
+            _isMoveY = true;
+            _transform.DOMoveY(y, _seconds)
+            .OnKill(() => _isMoveY = false);
+        }
+    }
+
+    public void DiagonalMove(float diagonal)
+    {
+        if (!_isDiagonalMove)
+        {
+            _isDiagonalMove = true;
+            _transform.DOMove(new Vector2(diagonal, diagonal), _seconds)
+            .SetLoops(2, LoopType.Yoyo)
+            .OnKill(() => _isDiagonalMove = false);
+        }
+    }
+
+    public void Test()
+    {
+        _transform.DOMoveX(5, _seconds);
+        _transform.DOMoveY(5, _seconds);
+    }
+
+
 }
