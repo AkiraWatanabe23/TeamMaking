@@ -1,19 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 /// <summary>
 /// 石像の回転ギミック
 /// </summary>
 public class RotateGimmick : MonoBehaviour
 {
-    [SerializeField] private KeyCode _rotateKey = KeyCode.Tab;
     [SerializeField] private GameObject _target = default;
     [SerializeField] private GameObject[] _cubes = new GameObject[4];
     [Range(0f, 5f)]
     [SerializeField] private float _rotateSpeed = 1f;
     [SerializeField] private LayerMask _layer = default;
-    [SerializeField] private UnityEvent _rotateEvent = default;
 
     private GameObject[] _muzzle = new GameObject[4];
     private GameObject[] _muzzleEnd = new GameObject[4];
@@ -30,20 +27,15 @@ public class RotateGimmick : MonoBehaviour
             _startRot[i] = _cubes[i].transform.localEulerAngles.z;
         }
 
-        //for (var i = 0; i < 4; i++)
-        //{
-        //    _cubes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
-        //    _cubes[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.red;
-        //}
+        for (var i = 0; i < 4; i++)
+        {
+            _cubes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
+            _cubes[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(_rotateKey))
-        {
-            _rotateEvent?.Invoke();
-        }
-
         if (_isFinRot)
         {
             Debug.Log("check中...");
@@ -73,11 +65,11 @@ public class RotateGimmick : MonoBehaviour
             Debug.Log("soroimasita!!");
             ThirdSceneManager.IsClear = true;
 
-            //for (var i = 0; i < 4; i++)
-            //{
-            //    _cubes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
-            //    _cubes[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.green;
-            //}
+            for (var i = 0; i < 4; i++)
+            {
+                _cubes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+                _cubes[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.green;
+            }
         }
         else
         {
