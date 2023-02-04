@@ -12,6 +12,7 @@ public class GimmickMove : MonoBehaviour
     private bool _isMoveYLoop = false;
     private bool _isMoveY = false;
     private bool _isDiagonalMove = false;
+    private bool _isTest = false;
 
     private void Start()
     {
@@ -20,10 +21,10 @@ public class GimmickMove : MonoBehaviour
 
     public void MoveYLoop(float y)
     {
-        if(!_isMoveYLoop)
+        if (!_isMoveYLoop)
         {
             _isMoveYLoop = true;
-            _transform.DOMoveY(y, _seconds)
+            _transform.DOLocalMoveY(y, _seconds)
             .SetLoops(2, LoopType.Yoyo)
             .OnKill(() => _isMoveYLoop = false);
         }
@@ -33,8 +34,7 @@ public class GimmickMove : MonoBehaviour
         if (!_isMoveY)
         {
             _isMoveY = true;
-            _transform.DOMoveY(y, _seconds)
-            .OnKill(() => _isMoveY = false);
+            _transform.DOLocalMoveY(y, _seconds);
         }
     }
 
@@ -43,7 +43,7 @@ public class GimmickMove : MonoBehaviour
         if (!_isDiagonalMove)
         {
             _isDiagonalMove = true;
-            _transform.DOMove(new Vector2(diagonal, diagonal), _seconds)
+            _transform.DOLocalMove(new Vector2(diagonal, diagonal), _seconds)
             .SetLoops(2, LoopType.Yoyo)
             .OnKill(() => _isDiagonalMove = false);
         }
@@ -51,9 +51,12 @@ public class GimmickMove : MonoBehaviour
 
     public void Test()
     {
-        _transform.DOMoveX(5, _seconds);
-        _transform.DOMoveY(5, _seconds);
+        if (!_isTest)
+        {
+            _isTest = true;
+            _transform.DOLocalMoveX(5, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveY(5, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveY(0, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveX(0, _seconds))));        }
     }
-
-
 }
