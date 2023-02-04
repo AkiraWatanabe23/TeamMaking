@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Player(テストなので、移動のみ)
+/// Player(石像ギミックの俯瞰用のもの)
 /// </summary>
 public class PlayerTest : MonoBehaviour
 {
