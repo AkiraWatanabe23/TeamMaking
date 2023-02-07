@@ -13,6 +13,7 @@ public class GimmickMove : MonoBehaviour
     private bool _isMoveY = false;
     private bool _isDiagonalMove = false;
     private bool _isTest = false;
+    private bool _isTest2 = false;
 
     private void Start()
     {
@@ -49,14 +50,30 @@ public class GimmickMove : MonoBehaviour
         }
     }
 
-    public void Test()
+    public void MoveXMoveYLoop()
     {
         if (!_isTest)
         {
             _isTest = true;
-            _transform.DOLocalMoveX(5, _seconds)
-                .OnComplete(() => _transform.DOLocalMoveY(5, _seconds)
+            _transform.DOLocalMoveX(-5, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveY(-5, _seconds)
                 .OnComplete(() => _transform.DOLocalMoveY(0, _seconds)
-                .OnComplete(() => _transform.DOLocalMoveX(0, _seconds))));        }
+                .OnComplete(() => _transform.DOLocalMoveX(0, _seconds)
+                .OnComplete(() => _isTest = false))));
+                
+        }
+    }
+
+    public void MoveYMoveXLoop()
+    {
+        if (!_isTest2)
+        {
+            _isTest2 = true;
+            _transform.DOLocalMoveY(-6, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveX(-6, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveX(0, _seconds)
+                .OnComplete(() => _transform.DOLocalMoveY(0, _seconds)
+                .OnComplete(() => _isTest2 = false))));
+        }
     }
 }
