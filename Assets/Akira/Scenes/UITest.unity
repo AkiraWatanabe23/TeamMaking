@@ -541,6 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468653731}
   - component: {fileID: 468653732}
+  - component: {fileID: 468653733}
   m_Layer: 0
   m_Name: FadePlay
   m_TagString: Untagged
@@ -577,6 +578,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadePanel: {fileID: 233246811}
   _fadeTime: 1
+--- !u!114 &468653733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468653730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918115c47fc3a4844b86548f8bf7b314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settingPanel: {fileID: 1700590216}
+  _startElement: {fileID: 396276744}
 --- !u!1 &556594410
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150, y: -100}
+  m_AnchoredPosition: {x: -200, y: -100}
   m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970048718
@@ -1485,7 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.6815, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1505,7 +1520,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u8A2D\u5B9A"
+  m_Text: "\u8A2D\u5B9A\nclick to escape"
 --- !u!222 &2012705969
 CanvasRenderer:
   m_ObjectHideFlags: 0
