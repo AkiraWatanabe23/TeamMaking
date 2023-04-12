@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ThirdSceneManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _startImage = default;
+    [SerializeField] private SpriteRenderer _startImage = default;
     [SerializeField] private Sprite _switchSprite = default;
+    [SerializeField] private Fade _fade = default;
 
     private static bool _isClear = false;
 
@@ -13,7 +15,20 @@ public class ThirdSceneManager : MonoBehaviour
     {
         if (_isClear)
         {
-            _startImage.GetComponent<SpriteRenderer>().sprite = _switchSprite;
+            _startImage.sprite = _switchSprite;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (_isClear)
+        {
+            _fade.StartFadeOut
+                (() => SceneManager.LoadScene("ThirdSceneClear"));
+        }
+        else
+        {
+            Debug.Log("まだクリアしてない");
         }
     }
 }

@@ -13,18 +13,18 @@ public class IndicateText : MonoBehaviour
     [Tooltip("表示させるText")]
     [SerializeField] private Text _viewText = default;
     [Tooltip("表示させる内容")]
-    [TextArea(1, 3)]
+    [Multiline(3)]
     [SerializeField] private List<string> _testText = new();
-    [Tooltip("文字が出てくるときに流れる音")]
-    [SerializeField] private AudioSource _wordAudio = default;
 
+    /// <summary> 文字が出てくるときに流れる音 </summary>
+    private AudioSource _wordAudio = default;
     private int _index = 0;
     private bool _isFinish = false;
 
     private void Start()
     {
         _wordAudio = GetComponent<AudioSource>();
-        TextPlay();
+        //_isFinish = true;
     }
 
     private void Update()
@@ -68,5 +68,11 @@ public class IndicateText : MonoBehaviour
         //DOComplete...実行中の処理を終了までスキップする
         _viewText.DOComplete();
         _isFinish = true;
+    }
+
+    public void TextMovable()
+    {
+        _isFinish = true;
+        Debug.Log("テキスト流せます");
     }
 }

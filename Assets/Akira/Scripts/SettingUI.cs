@@ -4,17 +4,19 @@ using UnityEngine.UI;
 public class SettingUI : MonoBehaviour
 {
     [SerializeField] private Image _settingPanel = default;
-    [SerializeField] private Selectable _startElement = default;
+    [SerializeField] private Selectable[] _buttons = new Selectable[3];
 
+    private Selectable _startElement = default;
     private Selectable _currentElement = default;
+    private int _index = 0;
 
     private void Start()
     {
-        if (_startElement != null)
-        {
-            _currentElement = _startElement;
-            _currentElement.Select();
-        }
+        _startElement = _buttons[2];
+        _index = 2;
+
+        _currentElement = _startElement;
+        _currentElement.Select();
     }
 
     private void Update()
@@ -25,19 +27,29 @@ public class SettingUI : MonoBehaviour
                 _settingPanel.gameObject.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.A) ||
+            Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (_currentElement != null)
-                _currentElement.OnDeselect(null);
+            _index++;
+            if (_index >= _buttons.Length)
+            {
+                _index = 0;
+            }
 
-            if (Input.GetKey(KeyCode.LeftShift) ||
-                Input.GetKey(KeyCode.RightShift))
-                _currentElement = _currentElement.FindSelectableOnUp();
-            else
-                _currentElement = _currentElement.FindSelectableOnDown();
+            _currentElement = _buttons[_index];
+            _currentElement.Select();
+        }
+        else if (Input.GetKeyDown(KeyCode.D) ||
+            Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            _index--;
+            if (_index < 0)
+            {
+                _index = _buttons.Length - 1;
+            }
 
-            if (_currentElement != null)
-                _currentElement.Select();
+            _currentElement = _buttons[_index];
+            _currentElement.Select();
         }
     }
 }

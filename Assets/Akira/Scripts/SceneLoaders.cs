@@ -8,13 +8,13 @@ public class SceneLoaders : MonoBehaviour
 {
     [Tooltip("遷移先のシーン")]
     [SerializeField] private string _nextScene = default;
-    [SerializeField] private Fade _fadeObj = default;
+    [SerializeField] private Fade _fade = default;
 
     /// <summary> フェードアウト -> シーン遷移 </summary>
     /// <param name="sceneName"> 遷移先のシーン名 </param>
     private void PassToLoad(string sceneName)
     {
-        _fadeObj.StartFadeOut
+        _fade.StartFadeOut
             (() => SceneManager.LoadScene(sceneName));
     }
 

@@ -8,13 +8,14 @@ public class RotateGimmick : MonoBehaviour
 {
     [SerializeField] private GameObject _target = default;
     [SerializeField] private GameObject[] _cubes = new GameObject[4];
-    [Range(0f, 5f)]
-    [SerializeField] private float _rotateSpeed = 1f;
+    [Range(0.5f, 5f)]
+    [SerializeField] private float _rotateSpeed = 0.5f;
     [SerializeField] private LayerMask _layer = default;
 
     private GameObject[] _muzzle = new GameObject[4];
     private GameObject[] _muzzleEnd = new GameObject[4];
     private bool _isFinRot = false;
+    private bool _isMoving = false;
     private int _clearCount = 0;
     private readonly float[] _startRot = new float[4];
 
@@ -80,17 +81,23 @@ public class RotateGimmick : MonoBehaviour
 
     public void ButtonClick(int num)
     {
-        switch (num)
+        if (!_isMoving)
         {
-            case 0:
-                RotateReset();
-                break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                StartCoroutine(Rotate(num));
-                break;
+            _isMoving = true;
+
+            switch (num)
+            {
+                case 0:
+                    RotateReset();
+                    _isMoving = false;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    StartCoroutine(Rotate(num));
+                    break;
+            }
         }
     }
 
@@ -114,40 +121,45 @@ public class RotateGimmick : MonoBehaviour
 
     private IEnumerator Rotate(int num)
     {
-        int i = 0;
-        int exclude = 0;
-        switch (num)
+        if (!ThirdSceneManager.IsClear)
         {
-            case 1:
-                exclude = 3;
-                break;
-            case 2:
-                exclude = 0;
-                break;
-            case 3:
-                exclude = 1;
-                break;
-            case 4:
-                exclude = 2;
-                break;
-        }
+            int i = 0;
+            int exclude = 0;
 
-        foreach (var n in _cubes)
-        {
-            n.transform.GetChild(0).gameObject.SetActive(false);
-            n.transform.GetChild(1).gameObject.SetActive(false);
-        }
-
-        while (i < 90f / _rotateSpeed)
-        {
-            i++;
-            for (int n = 0; n < _cubes.Length; n++)
+            switch (num)
             {
-                if (n != exclude)
-                    _cubes[n].transform.Rotate(0f, 0f, _rotateSpeed);
+                case 1:
+                    exclude = 3;
+                    break;
+                case 2:
+                    exclude = 0;
+                    break;
+                case 3:
+                    exclude = 1;
+                    break;
+                case 4:
+                    exclude = 2;
+                    break;
             }
-            yield return null;
+
+            foreach (var n in _cubes)
+            {
+                n.transform.GetChild(0).gameObject.SetActive(false);
+                n.transform.GetChild(1).gameObject.SetActive(false);
+            }
+
+            while (i < 90f / _rotateSpeed)
+            {
+                i++;
+                for (int n = 0; n < _cubes.Length; n++)
+                {
+                    if (n != exclude)
+                        _cubes[n].transform.Rotate(0f, 0f, _rotateSpeed);
+                }
+                yield return null;
+            }
+            _isFinRot = true;
+            _isMoving = false;
         }
-        _isFinRot = true;
     }
 }
