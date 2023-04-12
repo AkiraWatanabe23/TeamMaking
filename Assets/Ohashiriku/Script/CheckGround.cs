@@ -14,7 +14,7 @@ public class CheckGround : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Invisible")
         {
             _isGround = false;
             _isJump = true;
@@ -23,7 +23,7 @@ public class CheckGround : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Invisible")
         {
             _isGround = true;
             _isJump = false;
