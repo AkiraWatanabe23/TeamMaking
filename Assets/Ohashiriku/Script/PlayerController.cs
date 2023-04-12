@@ -27,9 +27,11 @@ public class PlayerController : MonoBehaviour
 
     private float _horizontal;
 
-    private Transform _firstTransform;
+    private Vector3 _firstTransform;
 
     private SpriteRenderer _sr;
+
+    private bool _isDie = false;
 
     private void Awake()
     {
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _checkGround = GetComponent<CheckGround>();
-        _firstTransform = transform;
+        _firstTransform = transform.position;
        // _stateMachine.Init(_stateMachine.Idle);
        //anim.SetBool("IsRight", true);
     }
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
     public void Move()
     {
         _horizontal = Input.GetAxisRaw("Horizontal");
-        if (_checkGround.GetCheckGround())
+        if (_checkGround.GetCheckGround() && !_isDie)
         {
             _rb2D.velocity = new Vector2(_horizontal * _moveSpeed, _rb2D.velocity.y);
             if (_horizontal > 0)
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (_horizontal < 0)
             {
-                transform.rotation = new Quaternion(0, 1, 0, 0);
+                transform.rotation = new Quaternion(0, 180f, 0, 0);
                 _anim.SetBool("IsMove", true);
             }
             else
@@ -104,15 +106,25 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void PlayerReset()
     {
-        transform.position = _firstTransform.position;
+        _rb2D.Sleep();
+        _isDie = true;
+        transform.position = _firstTransform;
         _anim.Play("PlayerUp");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "リセット用のタグ")
+        if(collision.tag == "Reset")
         {
             PlayerReset();
         }
+    }
+
+    /// <summary>
+    /// アニメーションイベント
+    /// </summary>
+    private void OnRestart()
+    {
+        _isDie = false;
     }
 }
