@@ -60,12 +60,12 @@ public class PlayerController : MonoBehaviour
             _rb2D.velocity = new Vector2(_horizontal * _moveSpeed, _rb2D.velocity.y);
             if (_horizontal > 0)
             {
-                _sr.flipX = false;
+                transform.rotation = new Quaternion(0, 0, 0, 0);
                 _anim.SetBool("IsMove", true);
             }
             else if (_horizontal < 0)
             {
-                _sr.flipX = true;
+                transform.rotation = new Quaternion(0, 1, 0, 0);
                 _anim.SetBool("IsMove", true);
             }
             else
